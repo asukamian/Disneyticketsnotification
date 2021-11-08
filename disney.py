@@ -7,16 +7,17 @@ from selenium.webdriver.support import expected_conditions as EC
 import requests
 import time
 
-#しっかり待機させる関数
+
 try :
     def wait():
         driver.implicitly_wait(3)
         WebDriverWait(driver, 2000).until(EC.visibility_of_element_located((By.ID, 'searchResult')))
-    driver = webdriver.Chrome(executable_path="/Users/tooyamaasuka/Downloads/chromedriver")
+    driver = webdriver.Chrome(executable_path="#chromedriverの絶対パス")
 
     url = "https://reserve.tokyodisneyresort.jp/ticket/search/"
     driver.get(url)
     time.sleep(1)
+    
 
     research1 = driver.find_element_by_xpath("/html/body/div[2]/div/div/div[1]/div[1]/div[1]/section[1]/section[3]/div[2]/div/div/ul/div/div/li[1]/div/table/tbody/tr[4]/td[6]/a")
 
@@ -27,19 +28,6 @@ try :
 
     research2.click()
     wait()
-
-#error = driver.find_element_by_xpath("/html/body/div[13]/div/div/p")
-
-#def detect():
-#    if error.text == "エラーが発生しました":
-#        print("エラー")
-#        batsu = driver.find_element_by_xpath("/html/body/div[13]/div/div/button")
-#        batsu.click()
-#        research2.click()
-#    else:
-#        pass
-
-#detect()
 
 
     research3 = driver.find_elements_by_xpath("/html/body/div[2]/div/div/div[1]/div[1]/div[1]/section[2]/section[2]/div/ul/li[1]/div/p[3]")
@@ -62,7 +50,7 @@ try :
         """
         LINEに通知する
         """
-        line_notify_token = 'HvpyyLsdLN1bKMhR0f4fuzbMAr9TlnuRlhs30HgJahz'
+        line_notify_token = '#トークン'
         line_notify_api = 'https://notify-api.line.me/api/notify'
         headers = {'Authorization': f'Bearer {line_notify_token}'}
         data = {'message': f'message: {notification_message}'}
